@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LabTest — Laboratório de Testes de Software</title>
+<style>
+:root{--navy:#14213d;--blue:#2457c5;--sky:#eaf1ff;--ink:#172033;--muted:#5e687a;--line:#dbe1ea;--bg:#f5f7fb;--white:#fff;--green:#137547;--green-bg:#e8f7ee;--red:#b42318;--red-bg:#fff0ef;--amber:#8a5200;--amber-bg:#fff6df;--info:#2457c5;--info-bg:#eaf1ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:var(--navy);color:#fff;padding:22px max(20px,calc((100% - 1120px)/2));}
+header .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;opacity:.8}header h1{margin:4px 0;font-size:clamp(1.6rem,3vw,2.2rem)}header p{margin:4px 0 0;max-width:780px;color:#e2e9f7}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px max(16px,calc((100% - 1120px)/2));background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:3}
+button,.tab{font:inherit;cursor:pointer;border:1px solid var(--line);border-radius:9px;padding:9px 13px;background:#fff;color:var(--ink)}
+button.primary,.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}button.danger-button{background:var(--red);color:#fff;border-color:var(--red)}button:disabled{opacity:.5;cursor:not-allowed}button:hover,.tab:hover{filter:brightness(.97)}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #9cb8ff;outline-offset:2px}
+main{max-width:1120px;margin:28px auto;padding:0 20px 56px}.panel{display:none}.panel.active{display:block}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 2px 7px #17203308}.card> :last-child{margin-bottom:0}.section-intro{margin:0 0 18px;color:var(--muted)}
+h2{font-size:1.35rem;margin:0 0 10px}h3{font-size:1.05rem;margin:0 0 8px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.shop-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}.tool-card{margin-bottom:20px}.tool-card h2{margin-bottom:6px}.tool-card .helper{margin:0 0 14px;color:var(--muted);font-size:.9rem}.tool-card .actions{margin-top:14px}.field-stack{display:grid;gap:10px}.field-stack label{margin:0 0 5px}
+.stat{background:var(--sky);border-radius:12px;padding:15px}.stat strong{font-size:1.7rem;display:block}.pill{display:inline-block;font-size:.78rem;padding:3px 8px;border-radius:999px;background:#eef0f5;color:#384256}.pill.pass{background:#e4f6ec;color:var(--green)}.pill.fail{background:#ffebe9;color:var(--red)}.pill.pending{background:#fff1d6;color:var(--amber)}
+label{display:block;font-weight:650;font-size:.9rem;margin:14px 0 6px}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd3df;border-radius:8px;background:#fff;font:inherit;color:inherit}textarea{min-height:100px;resize:vertical}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f4f6fa;font-size:.83rem}td select{min-width:120px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.alert{border-left:4px solid;padding:13px 16px;border-radius:8px;margin:14px 0 18px}.alert-info{border-color:var(--info);background:var(--info-bg);color:#1e3a70}.alert-warning{border-color:var(--amber);background:var(--amber-bg);color:#704300}.alert-success{border-color:var(--green);background:var(--green-bg);color:#125b37}.alert-danger{border-color:var(--red);background:var(--red-bg);color:#8f1d16}.notice{border-left:4px solid var(--info);padding:13px 16px;background:var(--info-bg);border-radius:8px}.success{color:var(--green);font-weight:650}.error{color:var(--red);font-weight:650}.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.product{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.product .emoji{font-size:3.3rem;text-align:center;background:#f0f4fb;padding:18px}.product .body{padding:14px}.price{font-weight:750;font-size:1.15rem}.product button{width:100%;margin-top:10px}.hide{display:none!important}.small{font-size:.85rem}.case{border:1px solid var(--line);border-radius:12px;padding:18px;margin:14px 0}.case p{margin:10px 0}.case label{margin-top:16px}.case-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.checkrow{display:flex;gap:8px;align-items:flex-start}.checkrow input{width:auto;margin-top:5px}.footer{text-align:center;color:var(--muted);font-size:.8rem;padding:20px}
+@media(max-width:760px){.grid,.grid.two,.formgrid,.product-grid,.shop-tools{grid-template-columns:1fr}.case-head{align-items:flex-start;flex-direction:column}header{padding:20px 16px}nav{position:static}main{padding:0 14px 36px;margin:18px auto}.card{padding:18px}.actions>*{max-width:100%}}
+</style>
+</head>
+<body>
+<header>
+ <div class="eyebrow">SENAI • UC Testes de Software</div>
+ <h1>LabTest — Laboratório de Testes</h1>
+ <p>Ambiente didático para planejar casos, executar testes, registrar defeitos e analisar resultados. Loja e dados totalmente fictícios.</p>
+</header>
+<nav aria-label="Navegação principal">
+ <button class="tab active" data-tab="inicio">Visão geral</button>
+ <button class="tab" data-tab="loja">Loja virtual</button>
+ <button class="tab" data-tab="testes">Lista de testes</button>
+ <button class="tab" data-tab="defeitos">Registro de defeitos</button>
+ <button class="tab" data-tab="finalizar">Finalizar atividade</button>
+</nav>
+<main>
+<section id="inicio" class="panel active">
+ <div class="card">
+  <h2>Bem-vindo ao laboratório</h2>
+  <p>Você é responsável por testar uma loja virtual fictícia. Leia os requisitos, execute os casos de teste e registre o que observou. Alguns comportamentos incorretos foram inseridos intencionalmente para fins educacionais.</p>
+  <div class="alert alert-info"><strong>Informação:</strong> não use senhas reais nem dados pessoais. Os registros são salvos automaticamente neste navegador, separados por nome e turma. Eles não são enviados para um servidor.</div>
+ </div>
+ <div class="card" id="studentCard">
+  <h2>Identificação do aluno</h2>
+  <p>Preencha seu nome e turma antes de começar. Os registros serão salvos automaticamente neste navegador, separados por nome e turma.</p>
+  <div class="formgrid">
+   <div><label for="studentName">Nome completo</label><input id="studentName" autocomplete="name" placeholder="Digite seu nome"></div>
+   <div><label for="studentClass">Turma</label><input id="studentClass" placeholder="Ex.: TDS-2026"></div>
+  </div>
+  <div class="actions"><button id="saveIdentity" class="primary">Salvar identificação</button><span id="saveState" class="small muted" aria-live="polite">Identifique-se para iniciar.</span></div>
+ </div>
+ <div class="card"><h2>Requisitos básicos da loja</h2><ol>
+ <li>Usuários devem informar e-mail e senha para entrar.</li><li>É possível pesquisar produtos existentes.</li><li>Produtos podem ser adicionados ao carrinho.</li><li>A quantidade de cada produto deve ser maior que zero.</li><li>O pedido exige endereço de entrega.</li><li>O sistema deve apresentar confirmação após finalizar o pedido.</li></ol></div>
+ <div class="card"><h2>Roteiro sugerido</h2><ol><li>Abra a Loja virtual e explore as funções.</li><li>Na Lista de testes, execute os casos e compare o comportamento com o esperado.</li><li>Marque cada caso como aprovado ou reprovado e registre suas observações.</li><li>Se marcar um caso como REPROVADO, registre o defeito correspondente na área Registro de defeitos. Isso documenta o que falhou e como outra pessoa pode reproduzir o problema.</li><li>Use o relatório para responder à atividade solicitada pelo professor.</li></ol></div>
+</section>
+<section id="loja" class="panel">
+ <div class="card"><h2>Loja virtual de demonstração</h2><p class="section-intro">Explore as áreas separadas, como em uma loja virtual real. Todos os produtos e dados são fictícios.</p></div>
+ <div class="shop-tools">
+  <div class="card tool-card"><h2><span aria-hidden="true">⌕</span> Pesquisar produtos</h2><p class="helper">Encontre um item pelo nome e observe como a lista é filtrada.</p><label for="searchProduct">Nome do produto</label><input id="searchProduct" placeholder="Ex.: caderno" autocomplete="off"><div class="actions"><button id="searchBtn" class="primary">Pesquisar</button><button id="clearSearch">Limpar busca</button></div></div>
+  <div class="card tool-card"><h2><span aria-hidden="true">♙</span> Área do cliente — Entrar</h2><p class="helper">Use somente credenciais fictícias. Esta tela é demonstrativa e não autentica usuários.</p><div class="field-stack"><div><label for="loginEmail">E-mail</label><input id="loginEmail" type="email" placeholder="aluno@exemplo.com" autocomplete="off"></div><div><label for="loginPassword">Senha</label><input id="loginPassword" type="password" placeholder="Digite uma senha fictícia" autocomplete="new-password"></div></div><div class="actions"><button id="loginBtn" class="primary">Entrar</button></div><p id="loginMsg" aria-live="polite" class="small"></p></div>
+ </div>
+ <div class="card"><h2>Produtos disponíveis</h2><p class="section-intro">Selecione um produto para adicioná-lo ao carrinho.</p><div class="product-grid" id="products"></div></div>
+ <div class="card"><h2>Carrinho e finalização do pedido</h2><div id="cartArea">Seu carrinho está vazio.</div><div class="formgrid"><div><label for="address">Endereço de entrega</label><input id="address" placeholder="Rua e número (dados fictícios)"></div><div><label for="payment">Forma de pagamento</label><select id="payment"><option value="">Selecione</option><option>Cartão fictício</option><option>Boleto de demonstração</option><option>Pix de demonstração</option></select></div></div><div class="actions"><button class="primary" id="checkout">Finalizar pedido</button><button id="emptyCart">Esvaziar carrinho</button></div><p id="checkoutMsg" aria-live="polite"></p></div>
+</section>
+<section id="testes" class="panel">
+ <div class="card"><h2>Lista de testes</h2><p>Execute os doze casos na loja virtual. Compare os resultados e registre seu status. Os casos CT09–CT12 ampliam a prática com variações de busca, validação de quantidade e persistência dos registros. Não consulte o gabarito antes de concluir.</p><p class="alert alert-warning"><strong>Atenção: é obrigatório escrever uma observação para CADA um dos 12 testes.</strong> Explique o que aconteceu ao executar o caso e compare com o resultado esperado. Não deixe o campo em branco nem escreva apenas “ok”. A finalização ficará bloqueada enquanto faltar alguma observação.</p>
+ </div>
+ <div id="testCases"></div>
+</section>
+<section id="defeitos" class="panel">
+ <div class="card"><h2>Registro de defeitos</h2><p class="muted">Descreva o que ocorreu, o que deveria ocorrer e como reproduzir o problema.</p>
+ <form id="bugForm"><div class="formgrid"><div><label for="bugTitle">Título do defeito *</label><input id="bugTitle" required placeholder="Ex.: Pedido finalizado sem endereço"></div><div><label for="bugSeverity">Severidade</label><select id="bugSeverity"><option>Baixa</option><option selected>Média</option><option>Alta</option><option>Crítica</option></select></div></div>
+ <label for="bugCase">Caso de teste relacionado</label><select id="bugCase"><option value="">Selecione</option></select>
+ <label for="bugExpected">Resultado esperado *</label><textarea id="bugExpected" required></textarea><label for="bugActual">Resultado observado *</label><textarea id="bugActual" required></textarea><label for="bugSteps">Passos para reproduzir *</label><textarea id="bugSteps" required></textarea><div class="actions"><button class="primary" type="submit">Registrar defeito</button></div></form></div>
+ <div class="card"><h2>Defeitos registrados nesta sessão</h2><div id="bugList" class="muted">Nenhum defeito registrado.</div></div>
+</section>
+
+<section id="finalizar" class="panel">
+ <div class="card">
+  <h2>Finalizar atividade</h2>
+  <p>Revise sua identificação, os status, as observações e os defeitos antes de gerar o arquivo final. Este botão prepara um relatório para baixar; ele não envia o arquivo automaticamente ao professor.</p>
+  <div id="reviewSummary" class="alert alert-warning" role="status" aria-live="polite">Preencha nome e turma na Visão geral e registre os resultados dos testes.</div>
+  <h3>Lista de conferência</h3><div id="reviewChecklist"></div>
+  <div class="actions"><button id="refreshReview">Atualizar conferência</button><button id="finalizeBtn" class="primary">Finalizar e baixar relatório HTML</button></div>
+  <p id="finalizeMessage" aria-live="polite" class="small"></p>
+ </div>
+ <div class="card"><h3>Arquivo de entrega</h3><p>O relatório HTML é o único arquivo que você precisa baixar e entregar. Ele reúne sua identificação, os doze resultados, observações, defeitos registrados e data de finalização. Você pode abrir o arquivo HTML no navegador e imprimir ou salvar como PDF, se necessário.</p></div>
+ <div class="card" id="maintenanceArea"><h3>Manutenção da atividade</h3><p>Use esta opção somente se precisar apagar todos os registros desta atividade e começar novamente. Essa ação remove a identificação salva, os resultados dos testes, as observações e os defeitos deste navegador. Ela não pode ser desfeita.</p><div class="actions"><button id="showResetConfirm">Reiniciar atividade…</button></div><div id="resetConfirmPanel" class="hide alert alert-danger" style="margin-top:16px"><h3>Confirmar reinicialização</h3><p><strong>Atenção:</strong> todos os dados locais desta atividade serão apagados permanentemente deste navegador. Se quiser guardar o trabalho, baixe o relatório antes de continuar.</p><label for="resetPhrase">Digite <code>APAGAR TUDO</code> para confirmar</label><input id="resetPhrase" autocomplete="off" placeholder="APAGAR TUDO"><div class="actions"><button id="cancelReset">Cancelar</button><button id="confirmReset" class="danger-button" disabled>Apagar tudo e começar do zero</button></div><p id="resetMessage" aria-live="polite" class="small"></p></div></div>
+</section>
+</main>
+<div class="footer">LabTest • Protótipo educacional • Não processa pagamentos nem transmite dados</div>
+<script>
+const products=[
+ {id:1,name:"Caderno universitário",desc:"Caderno de 100 folhas",price:18.9,emoji:"📓"},
+ {id:2,name:"Caneta azul",desc:"Caneta esferográfica",price:3.5,emoji:"🖊️"},
+ {id:3,name:"Mochila escolar",desc:"Mochila para materiais",price:89.9,emoji:"🎒"},
+ {id:4,name:"Estojo",desc:"Estojo com zíper",price:22,emoji:"✏️"},
+ {id:5,name:"Garrafa reutilizável",desc:"Garrafa de água",price:29.9,emoji:"🧴"},
+ {id:6,name:"Agenda",desc:"Agenda para organização",price:24.5,emoji:"📔"}
+];
+const cases=[
+ {id:"CT01",title:"Login com campos preenchidos",steps:"Digite um e-mail e uma senha fictícios e clique em Entrar.",expected:"O sistema deve validar credenciais; sem um serviço de autenticação, deve informar que o login é apenas demonstrativo.",hint:"O protótipo mostra mensagem de acesso demonstrativo, sem autenticar uma conta real.",expectedStatus:"fail",bug:"A tela exibe uma mensagem que pode parecer login concluído, mas não existe autenticação real."},
+ {id:"CT02",title:"Pesquisar produto existente",steps:"Pesquise por “caderno”.",expected:"A lista deve exibir o caderno correspondente.",hint:"A pesquisa filtra os produtos pelo nome.",expectedStatus:"pass"},
+ {id:"CT03",title:"Adicionar produto ao carrinho",steps:"Clique em Adicionar ao carrinho em um produto.",expected:"O produto aparece no carrinho com quantidade 1.",hint:"O carrinho deve atualizar a quantidade e o subtotal.",expectedStatus:"pass"},
+ {id:"CT04",title:"Quantidade igual a zero",steps:"No carrinho, altere a quantidade de um produto para 0.",expected:"O sistema deve impedir quantidades menores que 1 ou remover o item de forma explícita.",hint:"O protótipo permite quantidade zero e mantém o item no carrinho.",expectedStatus:"fail",bug:"A quantidade zero é aceita sem validação."},
+ {id:"CT05",title:"Finalizar pedido sem endereço",steps:"Adicione um produto, deixe o endereço vazio e clique em Finalizar pedido.",expected:"O sistema deve impedir a finalização e solicitar endereço.",hint:"O protótipo verifica o endereço antes de finalizar.",expectedStatus:"pass"},
+ {id:"CT06",title:"Finalizar pedido sem forma de pagamento",steps:"Preencha o endereço, deixe a forma de pagamento sem seleção e finalize.",expected:"O sistema deve solicitar a forma de pagamento.",hint:"O protótipo não verifica a forma de pagamento — observe a mensagem.",expectedStatus:"fail",bug:"O pedido pode ser finalizado sem selecionar forma de pagamento."},
+ {id:"CT07",title:"Pesquisar produto inexistente",steps:"Pesquise por “tablet espacial”.",expected:"O sistema deve informar que nenhum produto foi encontrado.",hint:"A lista deve ficar vazia e apresentar uma mensagem clara.",expectedStatus:"pass"},
+ {id:"CT08",title:"Esvaziar carrinho",steps:"Adicione dois produtos e clique em Esvaziar carrinho.",expected:"Todos os itens devem ser removidos.",hint:"O carrinho deve ficar vazio.",expectedStatus:"pass"},
+ {id:"CT09",title:"Pesquisar com letras maiúsculas",steps:"Na busca, digite CADERNO e clique em Pesquisar.",expected:"O sistema deve localizar o produto Caderno universitário, mesmo com letras maiúsculas.",hint:"A busca não diferencia letras maiúsculas e minúsculas.",expectedStatus:"pass"},
+ {id:"CT10",title:"Pesquisar com espaços extras",steps:"Digite dois espaços, depois caneta e mais dois espaços no campo de busca; clique em Pesquisar.",expected:"O sistema deve desconsiderar os espaços no início e no fim e localizar Caneta azul.",hint:"O sistema remove espaços externos antes de filtrar a lista.",expectedStatus:"pass"},
+ {id:"CT11",title:"Quantidade negativa",steps:"Adicione um produto ao carrinho. No campo quantidade, tente inserir -2 e confirme a alteração.",expected:"O sistema deve impedir que a quantidade fique negativa.",hint:"A quantidade é limitada a zero ou mais; o campo também declara mínimo zero.",expectedStatus:"pass"},
+ {id:"CT12",title:"Persistência dos registros de teste",steps:"Registre um status e uma observação em um caso. Atualize a página e volte à identificação com o mesmo nome e turma.",expected:"O status e a observação previamente salvos devem continuar disponíveis no mesmo navegador.",hint:"Os resultados e as observações são guardados no armazenamento local quando salvos.",expectedStatus:"pass"}
+];
+let cart=[], results={}, bugs=[];
+let student={name:"", turma:""};
+let storageKey="";
+const money=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const el=id=>document.getElementById(id);
+const cleanKey=s=>String(s||"").trim().toLocaleLowerCase("pt-BR").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+function saySaved(msg){const node=el("saveState");if(node)node.textContent=msg;}
+function currentStorageKey(){return "labtest_v2_"+cleanKey(student.name)+"_"+cleanKey(student.turma);}
+function persist(){
+ if(!student.name.trim()||!student.turma.trim()){saySaved("Preencha nome e turma para salvar automaticamente.");return;}
+ try{
+  localStorage.setItem(storageKey,JSON.stringify({student,results,bugs,updatedAt:new Date().toISOString()}));
+  saySaved("Salvo automaticamente neste navegador.");
+ }catch(e){saySaved("Não foi possível salvar neste navegador. Ao terminar, tente baixar o relatório HTML na tela Finalizar atividade.");}
+}
+function loadStudentData(){
+ if(!student.name.trim()||!student.turma.trim()){results={};bugs=[];storageKey="";renderCases();renderBugs();saySaved("Preencha nome e turma para salvar automaticamente.");return;}
+ storageKey=currentStorageKey();
+ try{
+  const saved=JSON.parse(localStorage.getItem(storageKey)||"null");
+  results=saved&&saved.results?saved.results:{};
+  bugs=saved&&saved.bugs?saved.bugs:[];
+  renderCases();renderBugs();
+  saySaved(saved?"Registros anteriores desta identificação foram recuperados.":"Identificação salva. Os novos registros serão guardados automaticamente.");
+  persist();
+ }catch(e){results={};bugs=[];renderCases();renderBugs();saySaved("Armazenamento indisponível. Baixe o relatório HTML na tela Finalizar atividade antes de sair.");}
+}
+function saveIdentity(){
+ const name=el("studentName").value.trim(), turma=el("studentClass").value.trim();
+ if(!name||!turma){saySaved("Informe nome completo e turma.");return;}
+ student={name,turma};
+ localStorage.setItem("labtest_last_identity",JSON.stringify(student));
+ loadStudentData();
+}
+function tab(name){document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===name));document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{tab(b.dataset.tab);if(b.dataset.tab==="finalizar")renderReview()}));
+function renderProducts(filter=""){let list=products.filter(p=>p.name.toLowerCase().includes(filter.toLowerCase()));el("products").innerHTML=list.length?list.map(p=>`<article class="product"><div class="emoji">${p.emoji}</div><div class="body"><h3>${p.name}</h3><p class="muted small">${p.desc}</p><div class="price">${money(p.price)}</div><button class="primary" onclick="addCart(${p.id})">Adicionar ao carrinho</button></div></article>`).join(""):'<div class="card">Nenhum produto encontrado.</div>'}
+function addCart(id){let item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({id,qty:1});renderCart();setMessage("checkoutMsg","Produto adicionado ao carrinho.","success")}
+function renderCart(){if(!cart.length){el("cartArea").innerHTML="Seu carrinho está vazio.";;return}el("cartArea").innerHTML=`<div class="tablewrap"><table><thead><tr><th>Produto</th><th>Preço</th><th>Quantidade</th><th>Subtotal</th></tr></thead><tbody>${cart.map(x=>{let p=products.find(p=>p.id===x.id);return `<tr><td>${p.name}</td><td>${money(p.price)}</td><td><input aria-label="Quantidade de ${p.name}" type="number" min="0" value="${x.qty}" onchange="setQty(${p.id},this.value)"></td><td>${money(p.price*x.qty)}</td></tr>`}).join("")}</tbody></table></div><p><strong>Total: ${money(cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0))}</strong></p>`;}
+function setQty(id,v){let item=cart.find(x=>x.id===id);if(item)item.qty=Math.max(0,Number(v)||0);renderCart()}
+function setMessage(id,msg,cls=""){el(id).textContent=msg;el(id).className=cls}
+el("searchBtn").onclick=()=>renderProducts(el("searchProduct").value.trim());el("clearSearch").onclick=()=>{el("searchProduct").value="";renderProducts()};
+el("loginBtn").onclick=()=>{let email=el("loginEmail").value.trim(),pass=el("loginPassword").value;setMessage("loginMsg",email&&pass?"Demonstração: os campos foram preenchidos, mas não existe autenticação real.":"Preencha e-mail e senha fictícios.",email&&pass?"success":"error")};
+el("checkout").onclick=()=>{if(!cart.length){setMessage("checkoutMsg","Adicione pelo menos um produto.","error");return}if(!el("address").value.trim()){setMessage("checkoutMsg","Informe o endereço de entrega.","error");return}if(cart.some(x=>x.qty===0)){setMessage("checkoutMsg","Pedido finalizado! (Comportamento de demonstração: quantidade zero foi aceita.)","error");return}setMessage("checkoutMsg","Pedido finalizado! (Comportamento de demonstração: forma de pagamento não foi validada.)","error")};
+el("emptyCart").onclick=()=>{cart=[];renderCart();setMessage("checkoutMsg","Carrinho esvaziado.")};
+function renderCases(){el("testCases").innerHTML=cases.map(c=>`<article class="card"><div class="case-head"><h3>${c.id} — ${c.title}</h3><span class="pill ${results[c.id]==="APROVADO"?"pass":results[c.id]==="REPROVADO"?"fail":"pending"}">${results[c.id]||"PENDENTE"}</span></div><p><strong>Passos:</strong> ${c.steps}</p><p><strong>Resultado esperado:</strong> ${c.expected}</p><label for="status_${c.id}">Resultado da execução</label><select id="status_${c.id}" onchange="setResult('${c.id}',this.value)"><option value="">Selecione...</option><option ${results[c.id]==="APROVADO"?"selected":""}>APROVADO</option><option ${results[c.id]==="REPROVADO"?"selected":""}>REPROVADO</option><option ${results[c.id]==="BLOQUEADO"?"selected":""}>BLOQUEADO</option></select><label for="obs_${c.id}">Observação obrigatória * — ${c.id}</label><textarea id="obs_${c.id}" aria-required="true" placeholder="Obrigatório: descreva o que aconteceu e compare com o resultado esperado...">${results[c.id+"_obs"]||""}</textarea><p class="small muted">Não deixe em branco. Registre o comportamento observado, mesmo quando o teste for aprovado.</p><div class="actions"><button onclick="saveObs('${c.id}')">Salvar observação</button><button onclick="tab('defeitos');el('bugCase').value='${c.id}';el('bugTitle').value='${c.id} — '">Registrar defeito deste caso</button></div></article>`).join("");bindObservationInputs();}
+function setResult(id,v){results[id]=v;persist();renderCases();renderReview()}
+function bindObservationInputs(){cases.forEach(c=>{const field=el("obs_"+c.id);if(field)field.addEventListener("input",()=>{results[c.id+"_obs"]=field.value;persist()})})}
+function saveObs(id){results[id+"_obs"]=el("obs_"+id).value;persist();saySaved("Observação salva automaticamente.");renderReview()}
+function renderBugs(){el("bugList").innerHTML=bugs.length?bugs.map((b,i)=>`<article class="case"><div class="case-head"><strong>DEF-${String(i+1).padStart(3,"0")} — ${esc(b.title)}</strong><span class="pill">${esc(b.severity)}</span></div><p><strong>Caso:</strong> ${esc(b.caseId||"Não informado")}</p><p><strong>Esperado:</strong> ${esc(b.expected)}</p><p><strong>Observado:</strong> ${esc(b.actual)}</p><p><strong>Passos:</strong> ${esc(b.steps)}</p></article>`).join(""):"Nenhum defeito registrado.";}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+el("bugForm").onsubmit=e=>{e.preventDefault();bugs.push({title:el("bugTitle").value.trim(),severity:el("bugSeverity").value,caseId:el("bugCase").value,expected:el("bugExpected").value.trim(),actual:el("bugActual").value.trim(),steps:el("bugSteps").value.trim()});e.target.reset();renderBugs();persist();saySaved("Defeito salvo automaticamente.");renderReview();};
+
+function reviewState(){
+ const missingIdentity=!student.name.trim()||!student.turma.trim();
+ const incomplete=cases.filter(c=>!["APROVADO","REPROVADO","BLOQUEADO"].includes(results[c.id]));
+ const noObs=cases.filter(c=>!String(results[c.id+"_obs"]||"").trim());
+ return {missingIdentity,incomplete,noObs};
+}
+function renderReview(){
+ const r=reviewState();
+ const checks=[
+  [!r.missingIdentity,"Nome e turma preenchidos"],
+  [r.incomplete.length===0,"Todos os doze casos têm status"],
+  [r.noObs.length===0,"Todos os 12 casos têm observação obrigatória preenchida"]
+ ];
+ el("reviewChecklist").innerHTML=checks.map(([ok,label])=>`<p class="checkrow"><span>${ok?"☑":"☐"}</span><span>${label}</span></p>`).join("");
+ const messages=[];
+ if(r.missingIdentity)messages.push("Preencha nome e turma na Visão geral.");
+ if(r.incomplete.length)messages.push("Faltam status: "+r.incomplete.map(c=>c.id).join(", ")+".");
+ if(r.noObs.length)messages.push("É obrigatório preencher uma observação para cada teste. Faltam: "+r.noObs.map(c=>c.id).join(", ")+".");
+ el("reviewSummary").className="alert "+(!messages.length?"alert-success":"alert-warning");
+ el("reviewSummary").textContent=messages.length?messages.join(" "):"Tudo conferido! Você já pode gerar seu relatório final. Se identificou um defeito, registre-o na área Registro de defeitos para documentar melhor a falha.";
+ el("finalizeBtn").disabled=messages.length>0;
+ el("finalizeMessage").textContent=messages.length?"Complete os itens pendentes para finalizar.":"Pronto para finalizar.";
+}
+function escReport(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function finalizeAndDownload(){
+ renderReview();
+ const r=reviewState();
+ if(r.missingIdentity||r.incomplete.length||r.noObs.length){setMessage("finalizeMessage","Ainda há itens pendentes na conferência.","error");return}
+ if(!confirm("Você revisou seus resultados? Clique em OK para gerar o arquivo final para entregar ao professor."))return;
+ const now=new Date();
+ const testRows=cases.map(c=>`<tr><td>${c.id}</td><td>${escReport(c.title)}</td><td>${escReport(results[c.id])}</td><td>${escReport(results[c.id+"_obs"]||"")}</td></tr>`).join("");
+ const bugRows=bugs.length?bugs.map((b,i)=>`<tr><td>DEF-${String(i+1).padStart(3,"0")}</td><td>${escReport(b.title)}</td><td>${escReport(b.severity)}</td><td>${escReport(b.caseId||"Não informado")}</td><td>${escReport(b.expected)}</td><td>${escReport(b.actual)}</td><td>${escReport(b.steps)}</td></tr>`).join(""):'<tr><td colspan="7">Nenhum defeito registrado.</td></tr>';
+ const report=`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório LabTest - ${escReport(student.name)}</title><style>body{font:14px/1.5 Arial,sans-serif;color:#172033;max-width:1100px;margin:24px auto;padding:0 18px}h1,h2{color:#14213d}table{border-collapse:collapse;width:100%;margin:12px 0 24px}th,td{border:1px solid #ccd4e0;padding:8px;text-align:left;vertical-align:top}th{background:#eef2f8}.meta{background:#f5f7fb;padding:12px;border-radius:8px}.print{margin:12px 0;padding:9px 12px}@media print{.print{display:none}body{margin:0;max-width:none}}</style></head><body><button class="print" onclick="window.print()">Imprimir / salvar como PDF</button><h1>LabTest — Relatório final de testes</h1><div class="meta"><p><strong>Aluno:</strong> ${escReport(student.name)}</p><p><strong>Turma:</strong> ${escReport(student.turma)}</p><p><strong>Data de finalização:</strong> ${now.toLocaleString("pt-BR")}</p><p><strong>Casos executados:</strong> ${cases.length}</p><p><strong>Casos reprovados:</strong> ${cases.filter(c=>results[c.id]==="REPROVADO").length}</p><p><strong>Defeitos registrados:</strong> ${bugs.length}</p></div><h2>Resultados dos casos de teste</h2><table><thead><tr><th>ID</th><th>Caso</th><th>Status</th><th>Observações do aluno</th></tr></thead><tbody>${testRows}</tbody></table><h2>Defeitos registrados</h2><table><thead><tr><th>ID</th><th>Título</th><th>Severidade</th><th>Caso</th><th>Esperado</th><th>Observado</th><th>Passos para reproduzir</th></tr></thead><tbody>${bugRows}</tbody></table><p>Relatório gerado pelo LabTest. O arquivo não foi enviado automaticamente ao professor; o aluno deve entregá-lo pelo canal indicado.</p></body></html>`;
+ const blob=new Blob([report],{type:"text/html;charset=utf-8"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=`relatorio-final-${cleanKey(student.name)||"aluno"}-${cleanKey(student.turma)||"turma"}.html`;
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ setMessage("finalizeMessage","Relatório final baixado. Entregue esse arquivo ao professor.","success");
+}
+// Manutenção: ação destrutiva exige abrir a área e digitar a frase exata, como em confirmações de repositórios.
+el("showResetConfirm").addEventListener("click",()=>{el("resetConfirmPanel").classList.remove("hide");el("resetPhrase").value="";el("confirmReset").disabled=true;el("resetMessage").textContent="";el("resetPhrase").focus()});
+el("resetPhrase").addEventListener("input",()=>{el("confirmReset").disabled=el("resetPhrase").value!=="APAGAR TUDO"});
+el("cancelReset").addEventListener("click",()=>{el("resetConfirmPanel").classList.add("hide");el("resetPhrase").value="";el("confirmReset").disabled=true;el("resetMessage").textContent="Reinicialização cancelada. Seus registros foram mantidos."});
+el("confirmReset").addEventListener("click",()=>{
+ if(el("resetPhrase").value!=="APAGAR TUDO")return;
+ try{if(storageKey)localStorage.removeItem(storageKey);localStorage.removeItem("labtest_last_identity");}
+ catch(e){el("resetMessage").textContent="Não foi possível limpar o armazenamento do navegador. Verifique as configurações do navegador e tente novamente.";return;}
+ student={name:"",turma:""};storageKey="";results={};bugs=[];cart=[];
+ el("studentName").value="";el("studentClass").value="";el("bugForm").reset();el("loginEmail").value="";el("loginPassword").value="";el("address").value="";el("payment").value="";el("searchProduct").value="";
+ setMessage("checkoutMsg","");setMessage("loginMsg","");
+ renderProducts();renderCart();renderCases();renderBugs();renderReview();saySaved("Atividade reiniciada. Informe nome e turma para começar novamente.");
+ el("resetConfirmPanel").classList.add("hide");el("resetPhrase").value="";el("confirmReset").disabled=true;
+ el("resetMessage").textContent="";setMessage("finalizeMessage","Atividade reiniciada. Nenhum registro anterior foi mantido.","success");
+});
+function renderKey(){el("answerKey").innerHTML='<div class="card"><h2>Gabarito dos casos de teste</h2>'+cases.map(c=>`<article class="case"><strong>${c.id} — ${c.title}</strong><p><span class="pill ${c.expectedStatus==="pass"?"pass":"fail"}">${c.expectedStatus==="pass"?"Comportamento esperado correto":"Falha intencional"}</span></p><p>${c.hint}</p>${c.bug?`<p><strong>Defeito previsto:</strong> ${c.bug}</p>`:""}</article>`).join("")+'<p class="notice">O CT01 é uma limitação de escopo do protótipo: ele não implementa autenticação real. Use-o para discutir critérios de aceite e diferença entre interface demonstrativa e funcionalidade completa.</p></div>'}
+el("bugCase").innerHTML=cases.map(c=>`<option value="${c.id}">${c.id} — ${c.title}</option>`).join("").replace(/^/,'<option value="">Selecione</option>');
+el("saveIdentity").addEventListener("click",saveIdentity);
+el("refreshReview").addEventListener("click",renderReview);
+el("finalizeBtn").addEventListener("click",finalizeAndDownload);
+try{const last=JSON.parse(localStorage.getItem("labtest_last_identity")||"null");if(last){student=last;el("studentName").value=last.name||"";el("studentClass").value=last.turma||"";loadStudentData();}}catch(e){}
+renderProducts();renderCart();renderCases();renderBugs();renderReview();
+</script>
+</body></html>
